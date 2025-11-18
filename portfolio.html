@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zsombor Nagy — Portfolio</title>
+
+<style>
+  @font-face {
+    font-family: "AvantGardeBold";
+    src: local("ITC Avant Garde Gothic LT Bold"),
+         local("AvantGarde LT Bold"),
+         local("AvantGarde-Bold");
+    font-weight: 700;
+  }
+
+  :root {
+    --accent: #ff8800;
+    --bg: #0e0e0f;
+    --card: #1a1a1d;
+    --text: #f3f3f3;
+    --subtle: #b7b7b7;
+    --radius: 16px;
+    --red: #ff453a;
+  }
+
+  body {
+    margin: 0;
+    padding: 1.5rem;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    text-align: center;
+  }
+
+  /* ---------- TOP SECTION FONTS ---------- */
+h1 {
+    font-family: "AvantGardeBold", "Inter", system-ui;
+    font-weight: 700;
+    font-size: 4.9rem;
+    margin-bottom: 0.1rem;
+    text-transform: uppercase;
+    color: var(--text);
+
+    letter-spacing: -0.105em;  /* tighter but still readable */
+    word-spacing: 0.28em;      /* keeps natural gap between words */
+}
+
+  .roles {
+    font-family: "AvantGardeBold", "Inter", system-ui;
+    font-weight: 700;
+    color: var(--subtle);
+    margin-bottom: 1.8rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---------- CONTACT BUTTON ---------- */
+  .contact-btn {
+    display: inline-block;
+    margin: 0 auto 2.2rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+    background: var(--red);
+    transition: 0.2s ease;
+  }
+
+  .contact-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  /* ---------- GRID ---------- */
+/* Always 2 cards per row on mobile */
+/* Always 2 cards per row on mobile — stays EXACTLY the same */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Tablet: 3 per row */
+@media (min-width: 600px) {
+  .projects {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Small desktop: 4 per row */
+@media (min-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Large desktop: 5 per row */
+@media (min-width: 1200px) {
+  .projects {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+  /* ---------- PROJECT CARD ---------- */
+.project {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  transition: 0.25s ease;
+}
+
+  .project:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  }
+
+  .poster-wrap {
+    width: 100%;
+    border-radius: var(--radius);
+    overflow: hidden;
+aspect-ratio: 2333 / 3500;
+    background: #222;
+  }
+
+  .poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+.meta {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;        /* makes the text area push pill-row downward */
+  padding: 0 2px;
+}
+
+  .project-title {
+    font-family: "AvantGardeBold", "Inter", system-ui;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .project-sub {
+    margin: 0.25rem 0 0.7rem;
+    font-size: 0.82rem;
+    color: var(--subtle);
+    line-height: 1.25;
+  }
+
+  /* ---------- PILL ---------- */
+.pill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;      /* anchors bottom row to bottom of meta */
+  padding-top: 0.4rem;   /* optional: adds breathing room */
+}
+
+  .pill {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    background: #2d2d31;
+    border: 1px solid #3a3a3f;
+    font-weight: 500;
+  }
+
+  /* ---------- STATUS ---------- */
+  .status {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .status.available { color: #4cd964; }
+
+  .status.soon { color: #9c9c9c; }
+
+.status.production {
+    color: var(--red);
+    animation: glowPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+    0% {
+      text-shadow: 0 0 0px rgba(255, 69, 58, 0.0);
+    }
+    50% {
+      text-shadow: 0 0 4px rgba(255, 69, 58, 0.35),
+                   0 0 8px rgba(255, 69, 58, 0.25);
+    }
+    100% {
+      text-shadow: 0 0 0px rgba(255, 69, 58, 0.0);
+    }
+}
+
+/* Fix uneven cards on narrow phones */
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 430px) {
+  body {
+    padding: 0.8rem;
+  }
+
+  .project {
+    padding: 0.55rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Zsombor Nagy</h1>
+<div class="roles">Cinematographer · Colorist · Director · Writer</div>
+
+<a class="contact-btn" href="mailto:nagy.zsombor2008@gmail.com">Contact</a>
+
+<div class="projects">
+
+  <!-- Memory 137 -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="memory137.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Memory 137</h3>
+      <p class="project-sub">Writer · Director · Cinematographer · Colorist</p>
+      <div class="pill-row">
+	<span class="pill">Limited Series</span>
+        <span class="status soon">Coming Soon</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Other Places -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="otherplaces.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Other Places</h3>
+      <p class="project-sub">Cinematographer · Writer · Director · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status production">In Production</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Sound of Silence -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="soundofsilence.png">
+text=Sound+of+Silence">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Sound of Silence</h3>
+      <p class="project-sub">Cinematographer · Writer · Director · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Scissors -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="scissors.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Scissors</h3>
+      <p class="project-sub">Writer · Colorist · Cinematographer</p>
+      <div class="pill-row">
+        <span class="pill">Feature Film</span>
+        <span class="status soon">Coming Soon</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Királycsel -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="Királycsel Poster (ENG).png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Királycsel</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Butterfly -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="butterfly.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Butterfly</h3>
+      <p class="project-sub">Cinematographer · Writer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status production">In Production</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Missing Person -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="missingperson.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Missing Person</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Baba -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="baba.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Baba</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Loveable -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="loveable.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Loveable</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Messy -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="messy.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Messy</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Quality Impact -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="qualityimpact.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Quality Impact Commercial</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Commercial</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Blikkzűr -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="blikkzür.png">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Blikkzűr</h3>
+      <p class="project-sub">Cinematographer</p>
+      <div class="pill-row">
+        <span class="pill">Short Film</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Lumiere Commercial -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="lumiere.png">
+text=Lumiere+Commercial">
+    </div>
+    <div class="meta">
+      <h3 class="project-title">Lumiere Commercial</h3>
+      <p class="project-sub">Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Commercial</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- PH Érték Intro -->
+  <a class="project">
+    <div class="poster-wrap">
+<img class="poster" src="phérék.png"> 
+    </div>
+    <div class="meta">
+      <h3 class="project-title">PH Érték Intro</h3>
+      <p class="project-sub">Cinematographer · Colorist</p>
+      <div class="pill-row">
+        <span class="pill">Music Video</span>
+        <span class="status available">Available</span>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+</body>
+</html>
